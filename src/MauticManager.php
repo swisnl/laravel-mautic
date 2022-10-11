@@ -14,8 +14,6 @@ use Illuminate\Contracts\Config\Repository;
  * @method \Mautic\MauticApi                              reconnect(string|null $name = null)
  * @method void                                           disconnect(string|null $name = null)
  * @method array<string,\Mautic\MauticApi>                getConnections()
- * @method void                                           authenticate(string $method, string $token, string|null $password = null)
- * @method void                                           setUrl(string $url)
  */
 class MauticManager extends AbstractManager
 {

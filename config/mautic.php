@@ -34,7 +34,8 @@ return [
 
         'main' => [
             'method' => 'oauth',
-            'token' => 'your-token',
+            'clientId' => 'key',
+            'clientSecret' => 'secret',
             'url' => 'https://your-mautic-instance.com',
         ],
 

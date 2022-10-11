@@ -5,9 +5,9 @@ namespace Swis\Laravel\Mautic\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Swis\Laravel\Mautic\LaravelMautic
+ * @see \Swis\Laravel\Mautic\MauticManager
  */
-class LaravelMautic extends Facade
+class Mautic extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
