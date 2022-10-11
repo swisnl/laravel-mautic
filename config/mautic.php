@@ -33,16 +33,16 @@ return [
     'connections' => [
 
         'main' => [
-            'method'  => 'oauth',
-            'token'   => 'your-token',
-            'url'     => 'https://your-mautic-instance.com',
+            'method' => 'oauth',
+            'token' => 'your-token',
+            'url' => 'https://your-mautic-instance.com',
         ],
 
         'alternative' => [
-            'method'   => 'password',
+            'method' => 'password',
             'username' => 'foo',
             'password' => 'bar',
-            'url'      => 'https://your-mautic-instance.com',
+            'url' => 'https://your-mautic-instance.com',
         ],
 
     ],
