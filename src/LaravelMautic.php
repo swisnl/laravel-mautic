@@ -8,6 +8,40 @@ use Mautic\Auth\BasicAuth;
 use Mautic\Exception\ContextNotFoundException;
 use Mautic\MauticApi;
 
+/**
+ * @method assets()
+ * @method campaignEvents()
+ * @method campaigns()
+ * @method categories()
+ * @method companies()
+ * @method companyFields()
+ * @method contacts()
+ * @method data()
+ * @method devices()
+ * @method dynamicContents()
+ * @method emails()
+ * @method files()
+ * @method focus()
+ * @method forms()
+ * @method messages()
+ * @method notes()
+ * @method notifications()
+ * @method pages()
+ * @method points()
+ * @method pointTriggers()
+ * @method reports()
+ * @method roles()
+ * @method segments()
+ * @method smses()
+ * @method stages()
+ * @method stats()
+ * @method tags()
+ * @method themes()
+ * @method tweets()
+ * @method users()
+ * @method webhooks()
+ */
+
 class LaravelMautic extends MauticApi
 {
     protected string $baseUrl;
