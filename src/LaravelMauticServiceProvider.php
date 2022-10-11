@@ -19,10 +19,7 @@ class LaravelMauticServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-mautic')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-mautic_table')
-            ->hasCommand(LaravelMauticCommand::class);
+            ->hasConfigFile();
 
         $this->registerAuthFactory();
         $this->registerFactory();
