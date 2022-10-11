@@ -39,6 +39,7 @@ use Swis\Laravel\Mautic\Client;
 /**
  * @see \Swis\Laravel\Mautic\MauticManager
  * @mixin Client
+ *
  * @method static Assets assets()
  * @method static CampaignEvents campaignEvents()
  * @method static Campaigns campaigns()
