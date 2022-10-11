@@ -11,11 +11,10 @@ class AuthenticatorFactory
     /**
      * Make a new authenticator instance.
      *
-     * @param string $method
+     * @param  string  $method
+     * @return \Swis\Laravel\Mautic\Auth\Authenticator\AuthenticatorInterface
      *
      * @throws \InvalidArgumentException
-     *
-     * @return \Swis\Laravel\Mautic\Auth\Authenticator\AuthenticatorInterface
      */
     public function make(string $method)
     {

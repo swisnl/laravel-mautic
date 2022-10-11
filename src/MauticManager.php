@@ -24,9 +24,8 @@ class MauticManager extends AbstractManager
     /**
      * Create a new mautic manager instance.
      *
-     * @param \Illuminate\Contracts\Config\Repository $config
-     * @param \Swis\Laravel\Mautic\MauticFactory $factory
-     *
+     * @param  \Illuminate\Contracts\Config\Repository  $config
+     * @param  \Swis\Laravel\Mautic\MauticFactory  $factory
      */
     public function __construct(Repository $config, MauticFactory $factory)
     {
@@ -37,8 +36,7 @@ class MauticManager extends AbstractManager
     /**
      * Create the connection instance.
      *
-     * @param array $config
-     *
+     * @param  array  $config
      * @return \Mautic\MauticApi
      */
     protected function createConnection(array $config)
