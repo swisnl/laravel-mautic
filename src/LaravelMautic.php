@@ -41,7 +41,6 @@ use Mautic\MauticApi;
  * @method users()
  * @method webhooks()
  */
-
 class LaravelMautic extends MauticApi
 {
     protected string $baseUrl;
