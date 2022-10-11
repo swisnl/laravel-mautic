@@ -1,6 +1,6 @@
 <?php
 
-namespace Swis\LaravelMautic\Database\Factories;
+namespace Swis\Laravel\Mautic\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

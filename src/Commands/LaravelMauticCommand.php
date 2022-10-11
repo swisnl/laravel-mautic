@@ -1,6 +1,6 @@
 <?php
 
-namespace Swis\LaravelMautic\Commands;
+namespace Swis\Laravel\Mautic\Commands;
 
 use Illuminate\Console\Command;
 

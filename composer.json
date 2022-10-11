@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Swis\\LaravelMautic\\": "src",
-            "Swis\\LaravelMautic\\Database\\Factories\\": "database/factories"
+            "Swis\\Laravel\\Mautic\\": "src",
+            "Swis\\Laravel\\Mautic\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Swis\\LaravelMautic\\Tests\\": "tests"
+            "Swis\\Laravel\\Mautic\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Swis\\LaravelMautic\\LaravelMauticServiceProvider"
+                "Swis\\Laravel\\Mautic\\LaravelMauticServiceProvider"
             ],
             "aliases": {
-                "LaravelMautic": "Swis\\LaravelMautic\\Facades\\LaravelMautic"
+                "LaravelMautic": "Swis\\Laravel\\Mautic\\Facades\\LaravelMautic"
             }
         }
     },

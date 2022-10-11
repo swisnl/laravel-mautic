@@ -1,16 +1,16 @@
 <?php
 
-namespace Swis\LaravelMautic\Facades;
+namespace Swis\Laravel\Mautic\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Swis\LaravelMautic\LaravelMautic
+ * @see \Swis\Laravel\Mautic\LaravelMautic
  */
 class LaravelMautic extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Swis\LaravelMautic\LaravelMautic::class;
+        return \Swis\Laravel\Mautic\LaravelMautic::class;
     }
 }

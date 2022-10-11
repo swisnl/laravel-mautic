@@ -1,6 +1,6 @@
 <?php
 
-// config for Swis/LaravelMautic
+// config for swisnl/laravel-mautic
 return [
 
 ];

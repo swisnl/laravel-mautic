@@ -1,6 +1,6 @@
 <?php
 
-namespace Swis\LaravelMautic;
+namespace Swis\Laravel\Mautic;
 
 class LaravelMautic
 {

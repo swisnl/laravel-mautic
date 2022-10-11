@@ -1,10 +1,10 @@
 <?php
 
-namespace Swis\LaravelMautic;
+namespace Swis\Laravel\Mautic;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Swis\LaravelMautic\Commands\LaravelMauticCommand;
+use Swis\Laravel\Mautic\Commands\LaravelMauticCommand;
 
 class LaravelMauticServiceProvider extends PackageServiceProvider
 {

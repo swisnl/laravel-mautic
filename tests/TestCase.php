@@ -1,10 +1,10 @@
 <?php
 
-namespace Swis\LaravelMautic\Tests;
+namespace Swis\Laravel\Mautic\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Swis\LaravelMautic\LaravelMauticServiceProvider;
+use Swis\Laravel\Mautic\LaravelMauticServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,7 +13,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Swis\\LaravelMautic\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Swis\\Laravel\\Mautic\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
