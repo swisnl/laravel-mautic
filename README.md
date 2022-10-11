@@ -15,24 +15,100 @@ You can install the package via composer:
 composer require swisnl/laravel-mautic
 ```
 
-You can publish the config file with:
+## Configuration
+
+Laravel Mautic requires connection configuration.
+
+To get started, you'll need to publish all vendor assets:
 
 ```bash
 php artisan vendor:publish --tag="laravel-mautic-config"
 ```
 
-This is the contents of the published config file:
+This will create a `config/mautic.php` file in your app that you can modify to set your configuration. Also, make sure you check for changes to the original config file in this package between releases.
 
-```php
-return [
-];
-```
+There are two config options:
+
+##### Default Connection Name
+
+This option (`'default'`) is where you may specify which of the connections below you wish to use as your default connection for all work. Of course, you may use many connections at once using the manager class. The default value for this setting is `'main'`.
+
+##### Mautic Connections
+
+This option (`'connections'`) is where each of the connections are setup for your application. Example configuration has been included, but you may add as many connections as you would like. Note that the 2 supported authentication methods are: `"oauth"` and `"password"`.
 
 ## Usage
 
+##### MauticManager
+
+This is the class of most interest. It is bound to the ioc container as `'laravel-mautic'` and can be accessed using the `Facades\Mautic` facade. This class implements the `ManagerInterface` by extending `AbstractManager`. The interface and abstract class are both part of my [Laravel Manager](https://github.com/GrahamCampbell/Laravel-Manager) package, so you may want to go and checkout the docs for how to use the manager class over at [that repo](https://github.com/GrahamCampbell/Laravel-Manager#usage). Note that the connection class returned will always be an instance of `Swis\Laravel\Mautic\Client`.
+
+##### Facades\Mautic
+
+This facade will dynamically pass static method calls to the `'laravel-mautic'` object in the ioc container which by default is the `MauticManager` class.
+
+##### LaravelMauticServiceProvider
+
+This class contains no public methods of interest. This class should be added to the providers array in `config/app.php`. This class will setup ioc bindings.
+
+##### Real Examples
+
+Here you can see an example of just how simple this package is to use. Out of the box, the default adapter is `main`. After you enter your authentication details in the config file, it will just work:
+
 ```php
-$laravelMautic = new Swis\Laravel\Mautic\Client();
-echo $laravelMautic->echoPhrase('Hello, Swis!');
+use Swis\Laravel\Mautic\Facades\Mautic;
+// you can alias this in config/app.php if you like
+
+Mautic::contacts()->find(1);
+// we're done here - how easy was that, it just works!
+```
+
+The mautic manager will behave like it is a `Swis\Laravel\Mautic\Client` class. If you want to call specific connections, you can do with the `connection` method:
+
+```php
+use Swis\Laravel\Mautic\Facades\Mautic;
+
+// writing this:
+Mautic::connection('main')->contacts()->find(1);
+
+// is identical to writing this:
+Mautic::contacts()->find(1);
+
+// and is also identical to writing this:
+Mautic::connection()->contacts()->find(1);
+
+// this is because the main connection is configured to be the default
+Mautic::getDefaultConnection(); // this will return main
+
+// we can change the default connection
+Mautic::setDefaultConnection('alternative'); // the default is now alternative
+
+// Get all the contacts
+Mautic::contacts()->getList();
+```
+
+If you prefer to use dependency injection over facades like me, then you can easily inject the manager like so:
+
+```php
+use Illuminate\Support\Facades\App; // you probably have this aliased already
+use Swis\Laravel\Mautic\MauticManager;
+
+class Foo
+{
+    protected $mautic;
+
+    public function __construct(MauticManager $mautic)
+    {
+        $this->mautic = $mautic;
+    }
+
+    public function bar()
+    {
+        $this->mautic->contacts()->find(1);
+    }
+}
+
+App::make('Foo')->bar();
 ```
 
 ## Testing
