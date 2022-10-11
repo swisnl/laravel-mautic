@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Swis\Laravel\Mautic;
 
+use GuzzleHttp\Client as HttpClient;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Swis\Laravel\Mautic\Auth\AuthenticatorFactory;
@@ -17,14 +18,15 @@ class MauticFactory
     /**
      * Make a new mautic client.
      *
-     * @param  string[]  $config
-     * @return LaravelMautic
+     * @param array<string, mixed> $config
      *
      * @throws \InvalidArgumentException
+     *
+     * @return Client
      */
-    public function make(array $config): LaravelMautic
+    public function make(array $config): Client
     {
-        $client = new LaravelMautic();
+        $client = new Client();
 
         if (! array_key_exists('method', $config)) {
             throw new InvalidArgumentException('The mautic factory requires an auth method.');
@@ -34,9 +36,11 @@ class MauticFactory
             $client->setBaseUrl($url);
         }
 
-        // TODO: Auth
+        $client->setAuth(
+            $this->auth->make($config['method'], $config)
+                ->withHttpClient(new HttpClient())
+        );
 
         return $client;
-//        return $this->auth->make($config['method'])->with($client)->authenticate($config);
     }
 }

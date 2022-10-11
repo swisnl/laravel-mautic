@@ -1,9 +1,11 @@
 <?php
 
-use Swis\Laravel\Mautic\Facades\LaravelMautic;
+use Swis\Laravel\Mautic\Facades\Mautic;
 
 it('can do a call or something', function () {
-    $response = LaravelMautic::contacts()->get(1);
+    expect(true)->toBeTrue();
 
-    dd($response);
+    $response = Mautic::contacts()->get(1);
+
+    // dd($response);
 });

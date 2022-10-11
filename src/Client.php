@@ -35,9 +35,9 @@ use Mautic\Api\Tweets;
 use Mautic\Api\Users;
 use Mautic\Api\Webhooks;
 use Mautic\Auth\AuthInterface;
-use Mautic\Auth\BasicAuth;
 use Mautic\Exception\ContextNotFoundException;
 use Mautic\MauticApi;
+use Swis\Laravel\Mautic\Auth\Authenticator\AuthenticatorInterface;
 
 /**
  * @method Assets assets()
@@ -72,13 +72,22 @@ use Mautic\MauticApi;
  * @method Users users()
  * @method Webhooks webhooks()
  */
-class LaravelMautic extends MauticApi
+class Client extends MauticApi
 {
     protected string $baseUrl;
+
+    protected AuthenticatorInterface $auth;
 
     public function setBaseUrl(string $baseUrl): self
     {
         $this->baseUrl = $baseUrl;
+
+        return $this;
+    }
+
+    public function setAuth(AuthenticatorInterface $auth): self
+    {
+        $this->auth = $auth;
 
         return $this;
     }
@@ -93,13 +102,6 @@ class LaravelMautic extends MauticApi
      */
     public function __call(string $name, array $arguments)
     {
-        return $this->newApi($name, $this->getAuth());
-    }
-
-    private function getAuth(): AuthInterface
-    {
-        $auth = new BasicAuth();
-
-        return $auth;
+        return $this->newApi($name, $this->auth);
     }
 }

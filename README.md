@@ -44,7 +44,7 @@ php artisan vendor:publish --tag="laravel-mautic-views"
 ## Usage
 
 ```php
-$laravelMautic = new Swis\Laravel\Mautic\LaravelMautic();
+$laravelMautic = new Swis\Laravel\Mautic\Client();
 echo $laravelMautic->echoPhrase('Hello, Swis!');
 ```
 
