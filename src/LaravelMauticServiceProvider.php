@@ -3,7 +3,6 @@
 namespace Swis\Laravel\Mautic;
 
 use Illuminate\Container\Container;
-use Spatie\LaravelPackageTools\Exceptions\InvalidPackage;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Swis\Laravel\Mautic\Auth\AuthenticatorFactory;
