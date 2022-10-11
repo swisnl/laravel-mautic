@@ -10,8 +10,23 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "Anthony Schuijlenburg",
+            "email": "aschuijlenburg@swis.nl",
+            "role": "Developer"
+        },
+        {
             "name": "Jasper Zonneveld",
             "email": "jasper@swis.nl",
+            "role": "Developer"
+        },
+        {
+            "name": "Rien van Velzen",
+            "email": "rvanvelzen@swis.nl",
+            "role": "Developer"
+        },
+        {
+            "name": "Thomas Wijnands",
+            "email": "twijnands@swis.nl",
             "role": "Developer"
         }
     ],

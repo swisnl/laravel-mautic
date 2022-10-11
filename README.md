@@ -55,7 +55,10 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
+- [Anthony Schuijlenburg](https://github.com/AnthonySchuijlenburg)
 - [Jasper Zonneveld](https://github.com/JaZo)
+- [Rien van Velzen](https://github.com/Rocksheep)
+- [Thomas Wijnands](https://github.com/tommie1001)
 - [All Contributors](../../contributors)
 
 ## License
