@@ -49,11 +49,16 @@ class MauticManager extends AbstractManager
      *
      * @return string
      */
-    protected function getConfigName()
+    protected function getConfigName(): string
     {
         return 'mautic';
     }
 
+    /**
+     * Get the factory
+     *
+     * @return MauticFactory
+     */
     public function getFactory(): MauticFactory
     {
         return $this->factory;
