@@ -54,9 +54,9 @@ class MauticManager extends AbstractManager
         return 'mautic';
     }
 
-
     /**
      * Get the factory
+     *
      * @return MauticFactory
      */
     public function getFactory(): MauticFactory
