@@ -6,7 +6,6 @@ use Illuminate\Container\Container;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Swis\Laravel\Mautic\Auth\AuthenticatorFactory;
-use Swis\Laravel\Mautic\Commands\LaravelMauticCommand;
 
 class LaravelMauticServiceProvider extends PackageServiceProvider
 {
