@@ -38,8 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Swis\\Laravel\\Mautic\\": "src",
-            "Swis\\Laravel\\Mautic\\Database\\Factories\\": "database/factories"
+            "Swis\\Laravel\\Mautic\\": "src"
         }
     },
     "autoload-dev": {
