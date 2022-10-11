@@ -18,11 +18,10 @@ class MauticFactory
     /**
      * Make a new mautic client.
      *
-     * @param array<string, mixed> $config
+     * @param  array<string, mixed>  $config
+     * @return Client
      *
      * @throws \InvalidArgumentException
-     *
-     * @return Client
      */
     public function make(array $config): Client
     {

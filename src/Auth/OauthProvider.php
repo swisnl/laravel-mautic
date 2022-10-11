@@ -11,7 +11,7 @@ class OauthProvider extends GenericProvider
         $options = array_merge([
             'urlAuthorize' => rtrim($options['url'] ?? '', '/').'/oauth/v2/authorize',
             'urlAccessToken' => rtrim($options['url'] ?? '', '/').'/oauth/v2/token',
-            'urlResourceOwnerDetails' => rtrim($options['url'] ?? '', '/').'/oauth/v2/resource'
+            'urlResourceOwnerDetails' => rtrim($options['url'] ?? '', '/').'/oauth/v2/resource',
         ], $options);
 
         parent::__construct($options, $collaborators);
@@ -25,7 +25,7 @@ class OauthProvider extends GenericProvider
     protected function getRequiredOptions()
     {
         return [
-            'url'
+            'url',
         ];
     }
 

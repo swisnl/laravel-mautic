@@ -27,7 +27,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         $request = (new Request($method, $url))
             ->withAddedHeader('Accept', 'application/json');
         // TODO: file?
-        if (!empty($parameters)) {
+        if (! empty($parameters)) {
             $request = $request->withBody(Utils::streamFor(json_encode($parameters, JSON_THROW_ON_ERROR)))
                 ->withAddedHeader('Content-Type', 'application/json');
         }
@@ -49,7 +49,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
     }
 
     /**
-     * @param \Psr\Http\Message\ResponseInterface $httpResponse
+     * @param  \Psr\Http\Message\ResponseInterface  $httpResponse
      *
      * @see \curl_getinfo()
      *

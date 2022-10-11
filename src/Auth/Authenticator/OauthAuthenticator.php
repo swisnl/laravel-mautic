@@ -3,7 +3,6 @@
 namespace Swis\Laravel\Mautic\Auth\Authenticator;
 
 use League\OAuth2\Client\Token\AccessTokenInterface;
-use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Swis\Laravel\Mautic\Auth\OauthProvider;
 
@@ -20,7 +19,7 @@ class OauthAuthenticator extends AbstractAuthenticator
 
     public function isAuthorized(): bool
     {
-        return isset($this->accessToken) && !$this->accessToken->hasExpired();
+        return isset($this->accessToken) && ! $this->accessToken->hasExpired();
     }
 
     public function authorize(): void
