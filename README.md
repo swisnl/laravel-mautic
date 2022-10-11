@@ -111,6 +111,8 @@ class Foo
 App::make('Foo')->bar();
 ```
 
+For more information on what features are available on the `Swis\Laravel\Mautic\Client` class, check out the Mautic docs at [https://developer.mautic.org/#endpoints](https://developer.mautic.org/#endpoints), and the manager class at [https://github.com/GrahamCampbell/Laravel-Manager#usage](https://github.com/GrahamCampbell/Laravel-Manager#usage).
+
 ## Testing
 
 ```bash
