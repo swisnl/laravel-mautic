@@ -32,11 +32,12 @@ class MauticFactory
         }
 
         if ($url = Arr::get($config, 'url')) {
-            $client->setUrl($url);
+            $client->setBaseUrl($url);
         }
 
         // TODO: Auth
 
-        return $this->auth->make($config['method'])->with($client)->authenticate($config);
+        return $client;
+//        return $this->auth->make($config['method'])->with($client)->authenticate($config);
     }
 }
