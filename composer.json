@@ -21,7 +21,7 @@
         "guzzlehttp/guzzle": "^7.5",
         "illuminate/contracts": "^9.0",
         "league/oauth2-client": "^2.6",
-        "mautic/api-library": "^3.1",
+        "mautic/api-library": "dev-main",
         "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {
@@ -72,5 +72,11 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Rocksheep/api-library"
+        }
+    ]
 }
