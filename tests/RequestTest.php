@@ -16,6 +16,8 @@ it('creates a new instance in Mautic when the model does not have a mautic_id', 
         create: fn (array $attributes) => ['contact' => ['id' => '1337']]
     );
 
+    Mautic::shouldReceive('connection')
+        ->andReturnSelf();
     Mautic::shouldReceive('contacts')
         ->once()
         ->andReturn($mock);
@@ -35,6 +37,8 @@ it('updates an existing Mautic entity when a mautic_id is found on the model', f
         edit: fn (string $id, array $attributes) => ['contact' => ['id' => '1337']]
     );
 
+    Mautic::shouldReceive('connection')
+        ->andReturnSelf();
     Mautic::shouldReceive('contacts')
         ->once()
         ->andReturn($mock);

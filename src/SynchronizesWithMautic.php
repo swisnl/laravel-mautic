@@ -6,7 +6,9 @@ interface SynchronizesWithMautic
 {
     public function toMauticArray(): array;
 
-    public function mauticType(): string;
+    public function getMauticType(): string;
+
+    public function getMauticConnection(): string;
 
     public function getMauticId(): ?string;
 
