@@ -42,7 +42,7 @@ it('updates an existing Mautic entity when a mautic_id is found on the model', f
     $user = new User([
         'name' => 'John Doe',
         'email' => 'john@exampel.com',
-        'mautic_id' => '1337'
+        'mautic_id' => '1337',
     ]);
 
     $user->save();
