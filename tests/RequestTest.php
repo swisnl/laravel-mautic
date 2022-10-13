@@ -20,8 +20,10 @@ it('creates a new instance in Mautic when the model does not have a mautic_id', 
     $mock = mock(\Mautic\Api\Contacts::class)->expect(
         itemName: fn () => 'contact'
     )->shouldReceive('create')
+        ->once()
         ->with($user->toMauticArray())
-        ->andReturn(['contact' => ['id' => '1337']])->getMock();
+        ->andReturn(['contact' => ['id' => '1337']])
+        ->getMock();
 
     Mautic::shouldReceive('connection')
         ->andReturnSelf();
@@ -31,34 +33,35 @@ it('creates a new instance in Mautic when the model does not have a mautic_id', 
 
     $user->save();
 
-    expect($user->getMauticId())->toBe('1337');
+    expect($user->refresh()->getMauticId())->toBe('1337');
 });
 
 it('updates an existing Mautic entity when a mautic_id is found on the model', function () {
-    $mock = mock(\Mautic\Api\Contacts::class)->expect(
-        edit: fn (string $id, array $attributes) => ['contact' => ['id' => '1337']],
-    );
-
-    Mautic::shouldReceive('connection')
-        ->andReturnSelf();
-    Mautic::shouldReceive('contacts')
-        ->once()
-        ->andReturn($mock);
-
     $user = new User([
         'name' => 'John Doe',
         'email' => 'john@exampel.com',
         'mautic_id' => '1337',
     ]);
 
-    $user->save();
+    $mock = mock(\Mautic\Api\Contacts::class)
+        ->shouldReceive('edit')
+        ->once()
+        ->with('1337', $user->toMauticArray())
+        ->getMock();
 
-    expect($user->isClean('mautic_id'))->toBeTrue();
+    Mautic::shouldReceive('connection')
+        ->andReturnSelf();
+    Mautic::shouldReceive('contacts')
+        ->once()
+        ->andReturn($mock);
+
+    $user->save();
 });
 
 it('tries to delete a user from Mautic when a user is deleted', function () {
     $mock = mock(\Mautic\Api\Contacts::class)
         ->shouldReceive('delete')
+        ->once()
         ->with('1337')
         ->getMock();
 
