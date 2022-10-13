@@ -22,6 +22,17 @@ trait SynchronizesWithMauticTrait
                 $model->setMauticId($response[$mauticObject->itemName()]['id']);
             }
         });
+        static::deleting(function ($model) {
+            if ($model instanceof SynchronizesWithMautic) {
+                if (!$model->getMauticId()) {
+                    return;
+                }
+
+                $mautic = Mautic::connection($model->getMauticConnection());
+                $mauticObject = call_user_func([$mautic, $model->getMauticType()]);
+                $mauticObject->delete($model->getMauticId());
+            }
+        });
     }
 
     public function toMauticArray(): array

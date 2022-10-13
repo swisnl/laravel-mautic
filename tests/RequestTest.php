@@ -55,3 +55,25 @@ it('updates an existing Mautic entity when a mautic_id is found on the model', f
 
     expect($user->isClean('mautic_id'))->toBeTrue();
 });
+
+it('tries to delete a user from Mautic when a user is deleted', function () {
+    $mock = mock(\Mautic\Api\Contacts::class)
+        ->shouldReceive('delete')
+        ->with('1337')
+        ->getMock();
+
+    Mautic::shouldReceive('connection')
+        ->andReturnSelf();
+    Mautic::shouldReceive('contacts')
+        ->once()
+        ->andReturn($mock);
+
+    $user = new User([
+        'name' => 'John Doe',
+        'email' => 'john@exampel.com',
+        'mautic_id' => '1337',
+    ]);
+
+    $user->saveQuietly();
+    $user->delete();
+});
