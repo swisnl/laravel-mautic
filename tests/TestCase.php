@@ -43,7 +43,7 @@ class TestCase extends Orchestra
             $table->increments('id');
             $table->string('name');
             $table->string('email');
-            $table->string('mautic_id');
+            $table->string('mautic_id')->nullable();
 
             $table->timestamps();
         });
