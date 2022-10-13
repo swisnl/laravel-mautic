@@ -3,34 +3,21 @@
 namespace Swis\Laravel\Mautic;
 
 use Swis\Laravel\Mautic\Facades\Mautic;
+use Swis\Laravel\Mautic\Jobs\DeleteModelFromMautic;
+use Swis\Laravel\Mautic\Jobs\PersistModelInMautic;
 
 trait SynchronizesWithMauticTrait
 {
-    public static function bootSynchronizesWithMauticTrait()
+    public static function bootSynchronizesWithMauticTrait(): void
     {
-        static::saving(function ($model) {
+        static::saved(function ($model) {
             if ($model instanceof SynchronizesWithMautic) {
-                $mautic = Mautic::connection($model->getMauticConnection());
-                $mauticObject = call_user_func([$mautic, $model->getMauticType()]);
-                if ($model->getMauticId()) {
-                    $mauticObject->edit($model->getMauticId(), $model->toMauticArray());
-
-                    return;
-                }
-                $response = $mauticObject->create($model->toMauticArray());
-
-                $model->setMauticId($response[$mauticObject->itemName()]['id']);
+                PersistModelInMautic::dispatch($model);
             }
         });
-        static::deleting(function ($model) {
+        static::deleted(function ($model) {
             if ($model instanceof SynchronizesWithMautic) {
-                if (!$model->getMauticId()) {
-                    return;
-                }
-
-                $mautic = Mautic::connection($model->getMauticConnection());
-                $mauticObject = call_user_func([$mautic, $model->getMauticType()]);
-                $mauticObject->delete($model->getMauticId());
+                DeleteModelFromMautic::dispatch($model);
             }
         });
     }
