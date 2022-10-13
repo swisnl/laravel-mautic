@@ -24,7 +24,7 @@ class PersistModelInMautic implements ShouldQueue
 
     public function handle(): void
     {
-        if (!$this->model instanceof SynchronizesWithMautic) {
+        if (! $this->model instanceof SynchronizesWithMautic) {
             return;
         }
 

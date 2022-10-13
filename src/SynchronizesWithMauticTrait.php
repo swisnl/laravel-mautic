@@ -2,7 +2,6 @@
 
 namespace Swis\Laravel\Mautic;
 
-use Swis\Laravel\Mautic\Facades\Mautic;
 use Swis\Laravel\Mautic\Jobs\DeleteModelFromMautic;
 use Swis\Laravel\Mautic\Jobs\PersistModelInMautic;
 
