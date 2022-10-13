@@ -8,7 +8,7 @@ interface SynchronizesWithMautic
 
     public function getMauticType(): string;
 
-    public function getMauticConnection(): string;
+    public function getMauticConnection(): ?string;
 
     public function getMauticId(): ?string;
 

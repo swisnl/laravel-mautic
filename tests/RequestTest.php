@@ -13,7 +13,8 @@ it('can do a call or something', function () {
 
 it('creates a new instance in Mautic when the model does not have a mautic_id', function () {
     $mock = mock(\Mautic\Api\Contacts::class)->expect(
-        create: fn (array $attributes) => ['contact' => ['id' => '1337']]
+        create: fn (array $attributes) => ['contact' => ['id' => '1337']],
+        itemName: fn () => 'contact'
     );
 
     Mautic::shouldReceive('connection')
@@ -34,7 +35,7 @@ it('creates a new instance in Mautic when the model does not have a mautic_id', 
 
 it('updates an existing Mautic entity when a mautic_id is found on the model', function () {
     $mock = mock(\Mautic\Api\Contacts::class)->expect(
-        edit: fn (string $id, array $attributes) => ['contact' => ['id' => '1337']]
+        edit: fn (string $id, array $attributes) => ['contact' => ['id' => '1337']],
     );
 
     Mautic::shouldReceive('connection')

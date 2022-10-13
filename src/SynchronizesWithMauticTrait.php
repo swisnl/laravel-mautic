@@ -11,16 +11,15 @@ trait SynchronizesWithMauticTrait
         static::saving(function ($model) {
             if ($model instanceof SynchronizesWithMautic) {
                 $mautic = Mautic::connection($model->getMauticConnection());
+                $mauticObject = call_user_func([$mautic, $model->getMauticType()]);
                 if ($model->getMauticId()) {
-                    call_user_func([$mautic, $model->getMauticType()])
-                        ->edit($model->getMauticId(), $model->toMauticArray());
+                    $mauticObject->edit($model->getMauticId(), $model->toMauticArray());
 
                     return;
                 }
-                $response = call_user_func([$mautic, $model->getMauticType()])
-                    ->create($model->toMauticArray());
+                $response = $mauticObject->create($model->toMauticArray());
 
-                $model->setMauticId($response['contact']['id']);
+                $model->setMauticId($response[$mauticObject->itemName()]['id']);
             }
         });
     }
@@ -30,14 +29,9 @@ trait SynchronizesWithMauticTrait
         return $this->toArray();
     }
 
-    public function getMauticType(): string
+    public function getMauticConnection(): ?string
     {
-        return 'contacts';
-    }
-
-    public function getMauticConnection(): string
-    {
-        return 'main';
+        return null;
     }
 
     public function getMauticId(): ?string

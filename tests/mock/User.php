@@ -23,4 +23,9 @@ class User extends Model implements SynchronizesWithMautic
             'name' => $this->name,
         ];
     }
+
+    public function getMauticType(): string
+    {
+        return 'contacts';
+    }
 }

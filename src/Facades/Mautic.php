@@ -71,7 +71,7 @@ use Swis\Laravel\Mautic\Client;
  * @method static Tweets tweets()
  * @method static Users users()
  * @method static Webhooks webhooks()
- * @method static self connection(?string $name)
+ * @method static Client connection(?string $name)
  */
 class Mautic extends Facade
 {
