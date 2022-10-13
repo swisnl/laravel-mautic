@@ -12,21 +12,22 @@ it('can do a call or something', function () {
 });
 
 it('creates a new instance in Mautic when the model does not have a mautic_id', function () {
+    $user = new User([
+        'name' => 'John Doe',
+        'email' => 'john@exampel.com',
+    ]);
+
     $mock = mock(\Mautic\Api\Contacts::class)->expect(
-        create: fn (array $attributes) => ['contact' => ['id' => '1337']],
         itemName: fn () => 'contact'
-    );
+    )->shouldReceive('create')
+        ->with($user->toMauticArray())
+        ->andReturn(['contact' => ['id' => '1337']])->getMock();
 
     Mautic::shouldReceive('connection')
         ->andReturnSelf();
     Mautic::shouldReceive('contacts')
         ->once()
         ->andReturn($mock);
-
-    $user = new User([
-        'name' => 'John Doe',
-        'email' => 'john@exampel.com',
-    ]);
 
     $user->save();
 
