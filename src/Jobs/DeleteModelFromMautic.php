@@ -23,7 +23,7 @@ class DeleteModelFromMautic
 
     public function handle(): void
     {
-        if (!$this->model instanceof SynchronizesWithMautic || !$this->model->getMauticId()) {
+        if (! $this->model instanceof SynchronizesWithMautic || ! $this->model->getMauticId()) {
             return;
         }
 
