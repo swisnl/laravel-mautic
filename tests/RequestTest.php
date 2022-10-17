@@ -61,7 +61,7 @@ it('tries to delete a user from Mautic when a user is deleted', function () {
     $user->delete();
 });
 
-function mockManager(string $methodName, \Mautic\Api\Api $api): void
+function mockManager(string $methodName, Mautic\Api\Api $api): void
 {
     $clientMock = mock(\Swis\Laravel\Mautic\Client::class)
         ->shouldReceive($methodName)
