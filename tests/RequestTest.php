@@ -11,7 +11,8 @@ it('creates a new instance in Mautic when the model does not have a mautic_id', 
 
     $contactsMock = mock(\Mautic\Api\Contacts::class)->expect(
         itemName: fn () => 'contact'
-    )->shouldReceive('create')
+    )->makePartial()
+        ->shouldReceive('create')
         ->once()
         ->with($user->toMauticArray())
         ->andReturn(['contact' => ['id' => '1337']])
@@ -32,6 +33,7 @@ it('updates an existing Mautic entity when a mautic_id is found on the model', f
     ]);
 
     $contactsMock = mock(\Mautic\Api\Contacts::class)
+        ->makePartial()
         ->shouldReceive('edit')
         ->once()
         ->with('1337', $user->toMauticArray())
@@ -44,6 +46,7 @@ it('updates an existing Mautic entity when a mautic_id is found on the model', f
 
 it('tries to delete a user from Mautic when a user is deleted', function () {
     $contactsMock = mock(\Mautic\Api\Contacts::class)
+        ->makePartial()
         ->shouldReceive('delete')
         ->once()
         ->with('1337')
@@ -61,17 +64,15 @@ it('tries to delete a user from Mautic when a user is deleted', function () {
     $user->delete();
 });
 
-function mockManager(string $methodName, Mautic\Api\Api $api): void
+function mockManager(string $methodName, $api): void
 {
     $clientMock = mock(\Swis\Laravel\Mautic\Client::class)
+        ->makePartial()
         ->shouldReceive($methodName)
         ->andReturn($api)
         ->getMock();
 
-    $managerMock = mock(\Swis\Laravel\Mautic\MauticManager::class)
+    Mautic::partialMock()
         ->shouldReceive('connection')
-        ->andReturn($clientMock)
-        ->getMock();
-
-    Mautic::swap($managerMock);
+        ->andReturn($clientMock);
 }
