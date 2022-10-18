@@ -1,6 +1,5 @@
 <?php
 
-use Swis\Laravel\Mautic\Facades\Mautic;
 use Swis\Laravel\Mautic\Tests\mock\User;
 
 it('creates a new instance in Mautic when the model does not have a mautic_id', function () {
@@ -63,16 +62,3 @@ it('tries to delete a user from Mautic when a user is deleted', function () {
     $user->saveQuietly();
     $user->delete();
 });
-
-function mockManager(string $methodName, $api): void
-{
-    $clientMock = mock(\Swis\Laravel\Mautic\Client::class)
-        ->makePartial()
-        ->shouldReceive($methodName)
-        ->andReturn($api)
-        ->getMock();
-
-    Mautic::partialMock()
-        ->shouldReceive('connection')
-        ->andReturn($clientMock);
-}
