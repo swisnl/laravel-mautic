@@ -113,18 +113,21 @@ App::make('Foo')->bar();
 
 For more information on what features are available on the `Swis\Laravel\Mautic\Client` class, check out the Mautic docs at [https://developer.mautic.org/#endpoints](https://developer.mautic.org/#endpoints), and the manager class at [https://github.com/GrahamCampbell/Laravel-Manager#usage](https://github.com/GrahamCampbell/Laravel-Manager#usage).
 
-# Notifications
+#### Notifications
 
 To use the notification driver built into this package make sure the entity you want to notify has the following traits:
+
 ```php
-class User
+class User extends Model
 {
     use Notifiable;
     use SynchronizesWithMauticTrait;
     use NotifiableViaMauticTrait;
 }
 ```
+
 Then make sure to add a Notification to your Laravel project. This notification should include the `MauticChannel` from this package in the `via()` method. Make sure your notification includes a `toMautic()` method which returns an instance of `MauticMessage`. For this you can use the `create()` method:
+
 ```php
 <?php
 
@@ -135,12 +138,12 @@ use Illuminate\Notifications\Notification;
 use Swis\Laravel\Mautic\Notifications\MauticChannel;
 use Swis\Laravel\Mautic\Notifications\MauticMessage;
 
-class PasswordReset extends Notification
+class OrderFulfilled extends Notification
 {
     use Queueable;
 
     public function __construct(
-        public readonly string $data,
+        public readonly string $message,
     ) {
     }
 
@@ -151,15 +154,16 @@ class PasswordReset extends Notification
 
     public function toMautic(mixed $notifiable): MauticMessage
     {
-        return MauticMessage::create($mauticId)
+        return MauticMessage::create(1) // The id of the mail in Mautic
             ->tokens([
-                'data' => $data,
-            ])->to($mauticUserId);
+                'message' => $message,
+            ])
+            ->to($mauticUserId); // Optional
     }
 }
 ```
 
-In this instance we set Tokens and To on the `MauticMessage`. The To is only needed when you don't notify through a notifiable. Tokens are used to overwrite placeholders in a Mautic mail template.
+In this example we set Tokens and To on the `MauticMessage`. Tokens are used to add placeholders in a Mautic mail template. To is optional and will use `$notifiable->routeNotificationFor('mautic')` as fallback.
 
 ## Testing
 
