@@ -19,9 +19,9 @@ class Segment extends Model implements SynchronizesWithMautic
         return 'segments';
     }
 
-    public function getOnDeletedJob(): DummyDeleteFromMautic
+    public function getOnDeletedJob()
     {
-        return new DummyDeleteFromMautic($this);
+        return null;
     }
 
     public function getOnSavedJob(): DummyPersistInMautic

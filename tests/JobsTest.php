@@ -20,7 +20,7 @@ it('uses the save job defined in the model', function () {
     Bus::assertDispatched(DummyPersistInMautic::class);
 });
 
-it('uses the delete job defined in the model', function () {
+it('does not dispatch a job when null is returned for the job method', function () {
     $segment = new Segment(['name' => 'Foo']);
     $segment->saveQuietly();
 
@@ -28,6 +28,5 @@ it('uses the delete job defined in the model', function () {
 
     $segment->delete();
 
-    Bus::assertNotDispatched(DeleteModelFromMautic::class);
-    Bus::assertDispatched(DummyDeleteFromMautic::class);
+    Bus::assertNothingBatched();
 });
