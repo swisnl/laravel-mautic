@@ -13,4 +13,8 @@ interface SynchronizesWithMautic
     public function getMauticId(): ?string;
 
     public function setMauticId(string $id): void;
+
+    public function getOnDeletedJob();
+
+    public function getOnSavedJob();
 }
