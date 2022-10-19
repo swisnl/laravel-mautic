@@ -1,11 +1,14 @@
 # Laravel wrapper for Mautic API
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/swisnl/laravel-mautic.svg?style=flat-square)](https://packagist.org/packages/swisnl/laravel-mautic)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/swisnl/laravel-mautic/run-tests?label=tests)](https://github.com/swisnl/laravel-mautic/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/swisnl/laravel-mautic/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/swisnl/laravel-mautic/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/swisnl/laravel-mautic.svg?style=flat-square)](https://packagist.org/packages/swisnl/laravel-mautic)
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Buy us a tree][ico-treeware]][link-treeware]
+[![GitHub Tests Action Status][ico-tests]][link-tests]
+[![GitHub Code Style Action Status][ico-code-style]][link-code-style]
+[![Total Downloads][ico-downloads]][link-downloads]
+[![Made by SWIS][ico-swis]][link-swis]
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+A batteries included Laravel wrapper for Mautic API. 
 
 ## Installation
 
@@ -35,7 +38,7 @@ This option (`'default'`) is where you may specify which of the connections belo
 
 ##### Mautic Connections
 
-This option (`'connections'`) is where each of the connections are setup for your application. Example configuration has been included, but you may add as many connections as you would like. Note that the 2 supported authentication methods are: `"oauth"` and `"password"`.
+This option (`'connections'`) is where each of the connections are set up for your application. Example configuration has been included, but you may add as many connections as you would like. Note that the 2 supported authentication methods are: `"oauth"` and `"password"`.
 
 ## Usage
 
@@ -49,7 +52,7 @@ This facade will dynamically pass static method calls to the `'laravel-mautic'` 
 
 ##### LaravelMauticServiceProvider
 
-This class contains no public methods of interest. This class should be added to the providers array in `config/app.php`. This class will setup ioc bindings.
+This class contains no public methods of interest. This class should be added to the providers array in `config/app.php`. This class will set up ioc bindings.
 
 ##### Real Examples
 
@@ -177,11 +180,11 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
 
-## Security Vulnerabilities
+## Security
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+If you discover any security related issues, please email security@swis.nl instead of using the issue tracker.
 
 ## Credits
 
@@ -194,3 +197,24 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+This package is [Treeware](https://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**][link-treeware] to thank us for our work. By contributing to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats.
+
+## SWIS :heart: Open Source
+
+[SWIS][link-swis] is a web agency from Leiden, the Netherlands. We love working with open source software.
+
+[ico-version]: https://img.shields.io/packagist/v/swisnl/laravel-mautic.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-treeware]: https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen.svg?style=flat-square
+[ico-tests]: https://img.shields.io/github/workflow/status/swisnl/laravel-mautic/run-tests/main?label=tests&style=flat-square
+[ico-code-style]: https://img.shields.io/github/workflow/status/swisnl/laravel-mautic/Fix%20PHP%20code%20style%20issues/main?label=code%20style&style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/swisnl/laravel-mautic.svg?style=flat-square
+[ico-swis]: https://img.shields.io/badge/%F0%9F%9A%80-made%20by%20SWIS-%230737A9.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/swisnl/laravel-mautic
+[link-tests]: https://github.com/swisnl/laravel-mautic/actions/workflows/run-tests.yml?query=branch%3Amain
+[link-code-style]: https://github.com/swisnl/laravel-mautic/actions/workflows/fix-php-code-style-issues.yml?query=branch%3Amain
+[link-downloads]: https://packagist.org/packages/swisnl/laravel-mautic
+[link-treeware]: https://plant.treeware.earth/swisnl/laravel-mautic
+[link-swis]: https://www.swis.nl
