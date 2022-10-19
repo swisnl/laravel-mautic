@@ -60,8 +60,16 @@ trait SynchronizesWithMauticTrait
         return new PersistModelInMautic($this);
     }
 
-    public function getOnDeletedJob(): DeleteModelFromMautic
+    public function getOnDeletedJob(): ?DeleteModelFromMautic
     {
-        return new DeleteModelFromMautic($this);
+        if (!$this->getMauticId()) {
+            return null;
+        }
+
+        return new DeleteModelFromMautic(
+            $this->getMauticId(),
+            $this->getMauticType(),
+            $this->getMauticConnection()
+        );
     }
 }
