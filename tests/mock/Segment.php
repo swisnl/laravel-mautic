@@ -5,7 +5,6 @@ namespace Swis\Laravel\Mautic\Tests\mock;
 use Illuminate\Database\Eloquent\Model;
 use Swis\Laravel\Mautic\SynchronizesWithMautic;
 use Swis\Laravel\Mautic\SynchronizesWithMauticTrait;
-use Swis\Laravel\Mautic\Tests\mock\Jobs\DummyDeleteFromMautic;
 use Swis\Laravel\Mautic\Tests\mock\Jobs\DummyPersistInMautic;
 
 class Segment extends Model implements SynchronizesWithMautic
