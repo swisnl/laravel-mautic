@@ -18,8 +18,7 @@ class DeleteModelFromMautic implements ShouldQueue
         protected string $mauticId,
         protected string $mauticType,
         protected ?string $mauticConnection = null
-    )
-    {
+    ) {
     }
 
     public function handle(): void

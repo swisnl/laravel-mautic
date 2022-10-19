@@ -62,7 +62,7 @@ trait SynchronizesWithMauticTrait
 
     public function getOnDeletedJob(): ?DeleteModelFromMautic
     {
-        if (!$this->getMauticId()) {
+        if (! $this->getMauticId()) {
             return null;
         }
 
