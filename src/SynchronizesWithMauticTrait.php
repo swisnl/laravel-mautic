@@ -12,12 +12,20 @@ trait SynchronizesWithMauticTrait
     {
         static::saved(function (Model $model) {
             if ($model instanceof SynchronizesWithMautic) {
-                dispatch($model->getOnSavedJob());
+                $job = $model->getOnSavedJob();
+
+                if ($job !== null) {
+                    dispatch($job);
+                }
             }
         });
         static::deleted(function (Model $model) {
             if ($model instanceof SynchronizesWithMautic) {
-                dispatch($model->getOnDeletedJob());
+                $job = $model->getOnDeletedJob();
+
+                if ($job !== null) {
+                    dispatch($job);
+                }
             }
         });
     }
