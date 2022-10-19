@@ -47,5 +47,13 @@ class TestCase extends Orchestra
 
             $table->timestamps();
         });
+
+        $this->app['db']->connection()->getSchemaBuilder()->create('segments', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('mautic_id')->nullable();
+
+            $table->timestamps();
+        });
     }
 }
