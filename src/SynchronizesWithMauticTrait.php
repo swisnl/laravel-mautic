@@ -2,6 +2,7 @@
 
 namespace Swis\Laravel\Mautic;
 
+use Illuminate\Database\Eloquent\Model;
 use Swis\Laravel\Mautic\Jobs\DeleteModelFromMautic;
 use Swis\Laravel\Mautic\Jobs\PersistModelInMautic;
 
@@ -9,14 +10,22 @@ trait SynchronizesWithMauticTrait
 {
     public static function bootSynchronizesWithMauticTrait(): void
     {
-        static::saved(function ($model) {
+        static::saved(function (Model $model) {
             if ($model instanceof SynchronizesWithMautic) {
-                PersistModelInMautic::dispatch($model);
+                $job = $model->getOnSavedJob();
+
+                if ($job !== null) {
+                    dispatch($job);
+                }
             }
         });
-        static::deleted(function ($model) {
+        static::deleted(function (Model $model) {
             if ($model instanceof SynchronizesWithMautic) {
-                DeleteModelFromMautic::dispatch($model);
+                $job = $model->getOnDeletedJob();
+
+                if ($job !== null) {
+                    dispatch($job);
+                }
             }
         });
     }
@@ -44,5 +53,23 @@ trait SynchronizesWithMauticTrait
     public function getMauticIdField(): string
     {
         return 'mautic_id';
+    }
+
+    public function getOnSavedJob(): PersistModelInMautic
+    {
+        return new PersistModelInMautic($this);
+    }
+
+    public function getOnDeletedJob(): ?DeleteModelFromMautic
+    {
+        if (! $this->getMauticId()) {
+            return null;
+        }
+
+        return new DeleteModelFromMautic(
+            $this->getMauticId(),
+            $this->getMauticType(),
+            $this->getMauticConnection()
+        );
     }
 }
