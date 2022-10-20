@@ -38,6 +38,7 @@
         "illuminate/notifications": "^9.0",
         "league/oauth2-client": "^2.6",
         "mautic/api-library": "^3.1",
+        "psr/log": "^2",
         "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {
