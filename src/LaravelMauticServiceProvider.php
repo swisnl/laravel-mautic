@@ -21,6 +21,7 @@ class LaravelMauticServiceProvider extends PackageServiceProvider
             ->hasConfigFile();
 
         $this->registerAuthFactory();
+        $this->registerHttpClientFactory();
         $this->registerFactory();
         $this->registerMautic();
     }
@@ -33,12 +34,21 @@ class LaravelMauticServiceProvider extends PackageServiceProvider
         $this->app->alias('laravel-mautic.authfactory', AuthenticatorFactory::class);
     }
 
+    protected function registerHttpClientFactory(): void
+    {
+        $this->app->singleton('laravel-mautic.httpclientfactory', function () {
+            return new HttpClientFactory();
+        });
+        $this->app->alias('laravel-mautic.httpclientfactory', HttpClientFactory::class);
+    }
+
     protected function registerFactory(): void
     {
         $this->app->singleton('laravel-mautic.factory', function (Container $app) {
             $authFactory = $app['laravel-mautic.authfactory'];
+            $httpClientFactory = $app['laravel-mautic.httpclientfactory'];
 
-            return new MauticFactory($authFactory);
+            return new MauticFactory($authFactory, $httpClientFactory);
         });
         $this->app->alias('laravel-mautic.factory', MauticFactory::class);
     }

@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Swis\Laravel\Mautic;
 
-use GuzzleHttp\Client as HttpClient;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Swis\Laravel\Mautic\Auth\AuthenticatorFactory;
 
 class MauticFactory
 {
-    public function __construct(protected AuthenticatorFactory $auth)
+    public function __construct(protected AuthenticatorFactory $auth, protected HttpClientFactory $httpClient)
     {
     }
 
@@ -37,7 +36,7 @@ class MauticFactory
 
         $client->setAuth(
             $this->auth->make($config['method'], $config)
-                ->withHttpClient(new HttpClient())
+                ->withHttpClient($this->httpClient->make($config))
         );
 
         return $client;
