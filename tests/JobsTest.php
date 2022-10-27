@@ -3,6 +3,7 @@
 namespace Swis\Laravel\Mautic\Tests;
 
 use Illuminate\Support\Facades\Bus;
+use Swis\Laravel\Mautic\Jobs\DeleteModelFromMautic;
 use Swis\Laravel\Mautic\Jobs\PersistModelInMautic;
 use Swis\Laravel\Mautic\Tests\mock\Jobs\DummyPersistInMautic;
 use Swis\Laravel\Mautic\Tests\mock\Segment;
