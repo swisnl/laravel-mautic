@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Swis\Laravel\Mautic\Exceptions\SynchronisationException;
 use Swis\Laravel\Mautic\Facades\Mautic;
 
 class DeleteModelFromMautic implements ShouldQueue
@@ -25,6 +26,10 @@ class DeleteModelFromMautic implements ShouldQueue
     {
         $mautic = Mautic::connection($this->mauticConnection);
         $mauticObject = call_user_func([$mautic, $this->mauticType]);
-        $mauticObject->delete($this->mauticId);
+        $response = $mauticObject->delete($this->mauticId);
+
+        if (isset($response['errors'])) {
+            throw new SynchronisationException($response['errors'][0]['message'], $response['errors'][0]['code']);
+        }
     }
 }

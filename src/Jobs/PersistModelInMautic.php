@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Swis\Laravel\Mautic\Exceptions\SynchronisationException;
 use Swis\Laravel\Mautic\Facades\Mautic;
 use Swis\Laravel\Mautic\SynchronizesWithMautic;
 
@@ -36,6 +37,10 @@ class PersistModelInMautic implements ShouldQueue
             return;
         }
         $response = $mauticObject->create($this->model->toMauticArray());
+
+        if (isset($response['errors'])) {
+            throw new SynchronisationException($response['errors'][0]['message'], $response['errors'][0]['code']);
+        }
 
         $this->model->setMauticId($response[$mauticObject->itemName()]['id']);
 
