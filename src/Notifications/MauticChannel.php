@@ -3,11 +3,12 @@
 namespace Swis\Laravel\Mautic\Notifications;
 
 use Illuminate\Notifications\Notification;
+use Swis\Laravel\Mautic\Exceptions\NotificationException;
 use Swis\Laravel\Mautic\Facades\Mautic;
 
 class MauticChannel
 {
-    public function send(mixed $notifiable, Notification $notification)
+    public function send(mixed $notifiable, Notification $notification): void
     {
         if (! method_exists($notification, 'toMautic')) {
             throw new \InvalidArgumentException('The toMautic method does not exist in your notification class.');
@@ -23,18 +24,22 @@ class MauticChannel
                 ?? $notifiable->routeNotificationFor(self::class, $notification);
 
             if (! $to) {
-                return null;
+                return;
             }
 
             $message->to($to);
         }
 
-        return Mautic::emails()->sendToContact(
+        $response = Mautic::emails()->sendToContact(
             $message->getMailId(),
             $message->getTo(),
             [
                 'tokens' => $message->getTokens(),
             ]
         );
+
+        if (isset($response['errors'])) {
+            throw new NotificationException($response['errors'][0]['message'], $response['errors'][0]['code']);
+        }
     }
 }
