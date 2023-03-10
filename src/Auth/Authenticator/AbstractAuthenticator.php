@@ -90,8 +90,6 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
     /**
      * Separates parameters from base URL.
      *
-     * @param  string  $url
-     * @param  array  $params
      * @return array{string, array}
      */
     protected function separateUrlParams(string $url, array $params): array
@@ -111,11 +109,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
     }
 
     /**
-     * @param  \Psr\Http\Message\ResponseInterface  $httpResponse
-     *
      * @see \curl_getinfo()
-     *
-     * @return array
      */
     private function getCurlInfo(ResponseInterface $httpResponse): array
     {

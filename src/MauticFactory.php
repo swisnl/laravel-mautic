@@ -18,7 +18,6 @@ class MauticFactory
      * Make a new mautic client.
      *
      * @param  array<string, mixed>  $config
-     * @return Client
      *
      * @throws \InvalidArgumentException
      */
