@@ -27,9 +27,7 @@ class OauthAuthenticator extends AbstractAuthenticator
         $this->accessToken ??= $this->provider->getAccessToken('client_credentials');
 
         if ($this->accessToken->hasExpired()) {
-            $this->accessToken = $this->provider->getAccessToken('refresh_token', [
-                'refresh_token' => $this->accessToken->getRefreshToken(),
-            ]);
+            $this->accessToken = $this->provider->getAccessToken('client_credentials');
         }
     }
 
