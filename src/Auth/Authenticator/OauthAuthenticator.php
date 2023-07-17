@@ -6,6 +6,7 @@ use League\OAuth2\Client\Token\AccessTokenInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Swis\Laravel\Mautic\Auth\OauthProvider;
+use Swis\Laravel\Mautic\Support\Psr18GuzzleAdapter;
 
 class OauthAuthenticator extends AbstractAuthenticator
 {
@@ -16,7 +17,7 @@ class OauthAuthenticator extends AbstractAuthenticator
     public function __construct(ClientInterface $client, array $config)
     {
         parent::__construct($client);
-        $this->provider = new OauthProvider($config);
+        $this->provider = new OauthProvider($config, ['httpClient' => new Psr18GuzzleAdapter($this->client)]);
     }
 
     public function isAuthorized(): bool
