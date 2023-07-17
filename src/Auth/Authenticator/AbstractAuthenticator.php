@@ -13,13 +13,8 @@ use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractAuthenticator implements AuthenticatorInterface
 {
-    private ClientInterface $client;
-
-    public function withHttpClient(ClientInterface $client): static
+    public function __construct(protected ClientInterface $client)
     {
-        $this->client = $client;
-
-        return $this;
     }
 
     abstract protected function authorizeRequest(RequestInterface $request): RequestInterface;

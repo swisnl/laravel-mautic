@@ -2,6 +2,7 @@
 
 namespace Swis\Laravel\Mautic\Auth\Authenticator;
 
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 
 class PasswordAuthenticator extends AbstractAuthenticator
@@ -10,8 +11,9 @@ class PasswordAuthenticator extends AbstractAuthenticator
 
     protected string $password;
 
-    public function __construct(array $config)
+    public function __construct(ClientInterface $client, array $config)
     {
+        parent::__construct($client);
         $this->username = $config['username'];
         $this->password = $config['password'];
     }

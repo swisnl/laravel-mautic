@@ -20,18 +20,10 @@ class LaravelMauticServiceProvider extends PackageServiceProvider
             ->name('laravel-mautic')
             ->hasConfigFile();
 
-        $this->registerAuthFactory();
         $this->registerHttpClientFactory();
+        $this->registerAuthFactory();
         $this->registerFactory();
         $this->registerMautic();
-    }
-
-    protected function registerAuthFactory(): void
-    {
-        $this->app->singleton('laravel-mautic.authfactory', function () {
-            return new AuthenticatorFactory();
-        });
-        $this->app->alias('laravel-mautic.authfactory', AuthenticatorFactory::class);
     }
 
     protected function registerHttpClientFactory(): void
@@ -42,13 +34,22 @@ class LaravelMauticServiceProvider extends PackageServiceProvider
         $this->app->alias('laravel-mautic.httpclientfactory', HttpClientFactory::class);
     }
 
+    protected function registerAuthFactory(): void
+    {
+        $this->app->singleton('laravel-mautic.authfactory', function (Container $app) {
+            $httpClientFactory = $app['laravel-mautic.httpclientfactory'];
+
+            return new AuthenticatorFactory($httpClientFactory);
+        });
+        $this->app->alias('laravel-mautic.authfactory', AuthenticatorFactory::class);
+    }
+
     protected function registerFactory(): void
     {
         $this->app->singleton('laravel-mautic.factory', function (Container $app) {
             $authFactory = $app['laravel-mautic.authfactory'];
-            $httpClientFactory = $app['laravel-mautic.httpclientfactory'];
 
-            return new MauticFactory($authFactory, $httpClientFactory);
+            return new MauticFactory($authFactory);
         });
         $this->app->alias('laravel-mautic.factory', MauticFactory::class);
     }

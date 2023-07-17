@@ -3,6 +3,7 @@
 namespace Swis\Laravel\Mautic\Auth\Authenticator;
 
 use League\OAuth2\Client\Token\AccessTokenInterface;
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Swis\Laravel\Mautic\Auth\OauthProvider;
 
@@ -12,8 +13,9 @@ class OauthAuthenticator extends AbstractAuthenticator
 
     protected AccessTokenInterface $accessToken;
 
-    public function __construct(array $config)
+    public function __construct(ClientInterface $client, array $config)
     {
+        parent::__construct($client);
         $this->provider = new OauthProvider($config);
     }
 

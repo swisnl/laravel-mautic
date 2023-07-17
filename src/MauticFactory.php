@@ -10,7 +10,7 @@ use Swis\Laravel\Mautic\Auth\AuthenticatorFactory;
 
 class MauticFactory
 {
-    public function __construct(protected AuthenticatorFactory $auth, protected HttpClientFactory $httpClient)
+    public function __construct(protected AuthenticatorFactory $auth)
     {
     }
 
@@ -35,7 +35,6 @@ class MauticFactory
 
         $client->setAuth(
             $this->auth->make($config['method'], $config)
-                ->withHttpClient($this->httpClient->make($config))
         );
 
         return $client;

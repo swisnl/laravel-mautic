@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* Removed `withHttpClient` method in authenticator classes, use constructor instead.
+
 ### Fixed
 
-* Throw NotificationException when notification fails
+* Throw NotificationException when notification fails.
