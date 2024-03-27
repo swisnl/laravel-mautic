@@ -11,8 +11,8 @@ use Swis\Laravel\Mautic\SynchronizesWithMauticTrait;
 class User extends Model implements SynchronizesWithMautic
 {
     use Notifiable;
-    use SynchronizesWithMauticTrait;
     use NotifiableViaMauticTrait;
+    use SynchronizesWithMauticTrait;
 
     protected $fillable = [
         'email',

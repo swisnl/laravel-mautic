@@ -8,10 +8,10 @@ use GrahamCampbell\Manager\AbstractManager;
 use Illuminate\Contracts\Config\Repository;
 
 /**
- * @method \Swis\Laravel\Mautic\Client                    connection(string|null $name = null)
- * @method \Swis\Laravel\Mautic\Client                    reconnect(string|null $name = null)
- * @method void                                           disconnect(string|null $name = null)
- * @method array<string,\Swis\Laravel\Mautic\Client>      getConnections()
+ * @method \Swis\Laravel\Mautic\Client connection(string|null $name = null)
+ * @method \Swis\Laravel\Mautic\Client reconnect(string|null $name = null)
+ * @method void disconnect(string|null $name = null)
+ * @method array<string,\Swis\Laravel\Mautic\Client> getConnections()
  */
 class MauticManager extends AbstractManager
 {
