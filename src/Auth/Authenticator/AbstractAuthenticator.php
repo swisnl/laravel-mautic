@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 use Mautic\Response;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractAuthenticator implements AuthenticatorInterface
 {
@@ -68,11 +67,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         $httpResponse = $this->client->sendRequest($request);
 
         // Parse response
-        $response = new Response((string) $httpResponse->getBody(), $this->getCurlInfo($httpResponse));
-
-        // TODO: Implement this
-        // $this->_httpResponseHeaders = $response->getHeaders();
-        // $this->_httpResponseInfo    = $response->getInfo();
+        $response = new Response($httpResponse);
 
         // Handle zip file response
         if ($response->isZip()) {
@@ -101,16 +96,5 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         }
 
         return [$url, $params];
-    }
-
-    /**
-     * @see \curl_getinfo()
-     */
-    private function getCurlInfo(ResponseInterface $httpResponse): array
-    {
-        return [
-            'content_type' => $httpResponse->hasHeader('content-type') ? $httpResponse->getHeader('content-type')[0] : '',
-            'http_code' => $httpResponse->getStatusCode(),
-        ];
     }
 }
