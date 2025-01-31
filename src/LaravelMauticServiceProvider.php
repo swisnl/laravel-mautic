@@ -29,7 +29,7 @@ class LaravelMauticServiceProvider extends PackageServiceProvider
     protected function registerHttpClientFactory(): void
     {
         $this->app->singleton('laravel-mautic.httpclientfactory', function () {
-            return new HttpClientFactory();
+            return new HttpClientFactory;
         });
         $this->app->alias('laravel-mautic.httpclientfactory', HttpClientFactory::class);
     }

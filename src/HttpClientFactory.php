@@ -9,6 +9,6 @@ class HttpClientFactory
 {
     public function make(array $config): ClientInterface
     {
-        return new HttpClient();
+        return new HttpClient;
     }
 }

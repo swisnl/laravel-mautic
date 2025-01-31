@@ -12,9 +12,7 @@ use Psr\Http\Message\RequestInterface;
 
 abstract class AbstractAuthenticator implements AuthenticatorInterface
 {
-    public function __construct(protected ClientInterface $client)
-    {
-    }
+    public function __construct(protected ClientInterface $client) {}
 
     abstract protected function authorizeRequest(RequestInterface $request): RequestInterface;
 

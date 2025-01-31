@@ -10,9 +10,7 @@ use Swis\Laravel\Mautic\Auth\AuthenticatorFactory;
 
 class MauticFactory
 {
-    public function __construct(protected AuthenticatorFactory $auth)
-    {
-    }
+    public function __construct(protected AuthenticatorFactory $auth) {}
 
     /**
      * Make a new mautic client.
@@ -23,7 +21,7 @@ class MauticFactory
      */
     public function make(array $config): Client
     {
-        $client = new Client();
+        $client = new Client;
 
         if (! array_key_exists('method', $config)) {
             throw new InvalidArgumentException('The mautic factory requires an auth method.');

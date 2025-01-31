@@ -10,9 +10,7 @@ use Swis\Laravel\Mautic\HttpClientFactory;
 
 class AuthenticatorFactory
 {
-    public function __construct(protected HttpClientFactory $httpClientFactory)
-    {
-    }
+    public function __construct(protected HttpClientFactory $httpClientFactory) {}
 
     public function make(string $method, array $config): AuthenticatorInterface
     {

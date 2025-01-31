@@ -8,9 +8,7 @@ class MauticMessage
 
     private array $tokens = [];
 
-    public function __construct(private readonly int|string $mailId)
-    {
-    }
+    public function __construct(private readonly int|string $mailId) {}
 
     public static function create(int|string $mailId): self
     {

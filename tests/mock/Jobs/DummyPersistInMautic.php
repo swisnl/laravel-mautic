@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DummyPersistInMautic
 {
-    public function __construct(private readonly Model $model)
-    {
-    }
+    public function __construct(private readonly Model $model) {}
 
     public function handle(): void
     {

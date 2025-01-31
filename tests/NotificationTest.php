@@ -20,7 +20,7 @@ it('can send a notification', function () {
                 ->tokens(['foo' => 'bar']);
         }
     };
-    $channel = new MauticChannel();
+    $channel = new MauticChannel;
 
     $emailsMock = mock(\Mautic\Api\Emails::class)
         ->makePartial()
@@ -49,7 +49,7 @@ it('throws when sending a notification fails', function () {
                 ->tokens(['foo' => 'bar']);
         }
     };
-    $channel = new MauticChannel();
+    $channel = new MauticChannel;
 
     $emailsMock = mock(\Mautic\Api\Emails::class)
         ->makePartial()

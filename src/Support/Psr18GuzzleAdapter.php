@@ -13,9 +13,7 @@ use Psr\Http\Message\ResponseInterface;
  */
 final class Psr18GuzzleAdapter implements GuzzleHttpClientInterface
 {
-    public function __construct(private readonly ClientInterface $client)
-    {
-    }
+    public function __construct(private readonly ClientInterface $client) {}
 
     public function send(RequestInterface $request, array $options = []): ResponseInterface
     {

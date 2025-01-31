@@ -19,9 +19,7 @@ class PersistModelInMautic implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function __construct(protected Model $model)
-    {
-    }
+    public function __construct(protected Model $model) {}
 
     public function handle(): void
     {

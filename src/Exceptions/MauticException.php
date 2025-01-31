@@ -2,6 +2,4 @@
 
 namespace Swis\Laravel\Mautic\Exceptions;
 
-interface MauticException
-{
-}
+interface MauticException {}
