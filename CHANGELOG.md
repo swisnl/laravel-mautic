@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Nothing yet.
 
 
+## [0.4.0] - 2025-01-31
+
+### Changed
+
+* Require `mautic/api-library` version 4 [#40](https://github.com/swisnl/laravel-mautic/pull/40).
+
+
 ## [0.3.0] - 2024-03-27
 
 ### Added
