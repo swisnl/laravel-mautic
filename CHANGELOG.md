@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Nothing yet.
 
 
+## [0.4.1] - 2025-03-03
+
+### Added
+
+* Added support for Laravel 12 [#42](https://github.com/swisnl/laravel-mautic/pull/42).
+
+
 ## [0.4.0] - 2025-01-31
 
 ### Changed
