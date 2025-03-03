@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Swis\Laravel\Mautic\Jobs\DeleteModelFromMautic;
 use Swis\Laravel\Mautic\Jobs\PersistModelInMautic;
 
+/** @phpstan-ignore trait.unused */
 trait SynchronizesWithMauticTrait
 {
     public static function bootSynchronizesWithMauticTrait(): void
