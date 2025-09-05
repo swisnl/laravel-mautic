@@ -20,7 +20,7 @@ class PasswordAuthenticator extends AbstractAuthenticator
 
     public function isAuthorized(): bool
     {
-        return isset($this->username, $this->password);
+        return $this->username !== '' && $this->password !== '';
     }
 
     protected function authorizeRequest(RequestInterface $request): RequestInterface
