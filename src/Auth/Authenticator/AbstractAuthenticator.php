@@ -55,9 +55,7 @@ abstract class AbstractAuthenticator implements AuthenticatorInterface
         $request = $request->withHeader('Accept', 'application/json');
         if ($body) {
             $request = $request->withBody($body);
-            if ($contentType) {
-                $request = $request->withHeader('Content-Type', $contentType);
-            }
+            $request = $request->withHeader('Content-Type', $contentType);
         }
         $request = $this->authorizeRequest($request);
 
