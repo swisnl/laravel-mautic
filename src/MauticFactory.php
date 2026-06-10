@@ -17,7 +17,7 @@ class MauticFactory
      *
      * @param  array<string, mixed>  $config
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function make(array $config): Client
     {

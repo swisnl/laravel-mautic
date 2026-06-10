@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Notifications\Notification;
+use Mautic\Api\Emails;
 use Swis\Laravel\Mautic\Exceptions\NotificationException;
 use Swis\Laravel\Mautic\Notifications\MauticChannel;
 use Swis\Laravel\Mautic\Notifications\MauticMessage;
@@ -22,7 +23,7 @@ it('can send a notification', function () {
     };
     $channel = new MauticChannel;
 
-    $emailsMock = mock(\Mautic\Api\Emails::class)
+    $emailsMock = mock(Emails::class)
         ->makePartial()
         ->shouldReceive('sendToContact')
         ->once()
@@ -51,7 +52,7 @@ it('throws when sending a notification fails', function () {
     };
     $channel = new MauticChannel;
 
-    $emailsMock = mock(\Mautic\Api\Emails::class)
+    $emailsMock = mock(Emails::class)
         ->makePartial()
         ->shouldReceive('sendToContact')
         ->once()
