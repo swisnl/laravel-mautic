@@ -35,9 +35,10 @@ use Mautic\Api\Tweets;
 use Mautic\Api\Users;
 use Mautic\Api\Webhooks;
 use Swis\Laravel\Mautic\Client;
+use Swis\Laravel\Mautic\MauticManager;
 
 /**
- * @see \Swis\Laravel\Mautic\MauticManager
+ * @see MauticManager
  *
  * @mixin Client
  *
